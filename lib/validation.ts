@@ -18,7 +18,7 @@ export const applicationSchema = z.object({
 });
 
 export const environmentSchema = z.enum(
-  ["development", "staging", "production"],
+  ["staging", "uat", "production"],
   { error: "Select an environment." }
 );
 

@@ -9,7 +9,8 @@ import { RefreshButton } from "@/components/ui/refresh-button";
 import { TableSkeleton } from "@/components/ui/table-skeleton";
 import { mapDeployment } from "@/lib/deployments/map";
 import { createClient } from "@/lib/supabase/server";
-import type { Environment, TriggerStatus } from "@/lib/types";
+import { isEnvironment } from "@/lib/environments";
+import type { TriggerStatus } from "@/lib/types";
 
 export const metadata = { title: "Deployments" };
 
@@ -65,11 +66,7 @@ async function DeploymentsContent({
   const page = Math.max(1, Number.parseInt(pageRaw ?? "1", 10) || 1);
 
   const environment =
-    environmentRaw === "development" ||
-    environmentRaw === "staging" ||
-    environmentRaw === "production"
-      ? (environmentRaw as Environment)
-      : null;
+    environmentRaw && isEnvironment(environmentRaw) ? environmentRaw : null;
 
   const status =
     statusRaw === "triggered" || statusRaw === "failed"

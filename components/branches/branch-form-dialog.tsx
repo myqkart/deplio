@@ -4,7 +4,11 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { createBranch, updateBranch } from "@/lib/actions/branches";
-import type { Environment } from "@/lib/types";
+import {
+  ENVIRONMENTS,
+  ENVIRONMENT_LABELS,
+  type Environment,
+} from "@/lib/environments";
 import { validateWebhookUrl } from "@/lib/validation";
 import { Button } from "@/components/ui/button";
 import {
@@ -170,7 +174,7 @@ function BranchFormFields({
               id="branch-name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="develop"
+              placeholder="staging"
               disabled={pending}
               autoFocus
               aria-invalid={!!fieldErrors.name}
@@ -191,6 +195,10 @@ function BranchFormFields({
                 setEnvironment(value as Environment | null)
               }
               disabled={pending}
+              items={ENVIRONMENTS.map((value) => ({
+                value,
+                label: ENVIRONMENT_LABELS[value],
+              }))}
             >
               <SelectTrigger
                 className="w-full"
@@ -199,9 +207,11 @@ function BranchFormFields({
                 <SelectValue placeholder="Select environment" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="development">Development</SelectItem>
-                <SelectItem value="staging">Staging</SelectItem>
-                <SelectItem value="production">Production</SelectItem>
+                {ENVIRONMENTS.map((value) => (
+                  <SelectItem key={value} value={value}>
+                    {ENVIRONMENT_LABELS[value]}
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
             {fieldErrors.environment ? (

@@ -1,4 +1,6 @@
-export type Environment = "development" | "staging" | "production";
+import type { Environment } from "@/lib/environments";
+
+export type { Environment };
 export type TriggerStatus = "triggered" | "failed";
 
 export type ApplicationRow = {

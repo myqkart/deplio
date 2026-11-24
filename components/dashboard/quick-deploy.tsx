@@ -128,6 +128,10 @@ export function QuickDeploy({ applications }: QuickDeployProps) {
             <Select
               value={applicationId}
               onValueChange={(value) => selectApplication(value)}
+              items={applications.map((app) => ({
+                value: app.id,
+                label: app.name,
+              }))}
             >
               <SelectTrigger className="w-full">
                 <SelectValue placeholder="Select application" />
@@ -150,6 +154,12 @@ export function QuickDeploy({ applications }: QuickDeployProps) {
               value={branchId}
               onValueChange={setBranchOverride}
               disabled={!selectedApp}
+              items={branches.map((branch) => ({
+                value: branch.id,
+                label: branch.isEnabled
+                  ? branch.name
+                  : `${branch.name} — disabled`,
+              }))}
             >
               <SelectTrigger className="w-full">
                 <SelectValue placeholder="Select branch" />
@@ -189,7 +199,7 @@ export function QuickDeploy({ applications }: QuickDeployProps) {
                 branchId=""
                 applicationName=""
                 branchName=""
-                environment="development"
+                environment="staging"
                 disabled
                 disabledReason={
                   selectedApp && enabledBranches.length === 0

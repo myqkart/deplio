@@ -3,7 +3,12 @@
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { useState, useTransition } from "react";
 import { FilterIcon } from "@primer/octicons-react";
-import type { Environment, TriggerStatus } from "@/lib/types";
+import {
+  ENVIRONMENTS,
+  ENVIRONMENT_LABELS,
+  type Environment,
+} from "@/lib/environments";
+import type { TriggerStatus } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import {
@@ -57,6 +62,13 @@ function FilterFields({
             update("application", !value || value === "all" ? null : value)
           }
           disabled={pending}
+          items={[
+            { value: "all", label: "All applications" },
+            ...applications.map((app) => ({
+              value: app.id,
+              label: app.name,
+            })),
+          ]}
         >
           <SelectTrigger className="w-full md:w-[200px]">
             <SelectValue />
@@ -85,15 +97,24 @@ function FilterFields({
             )
           }
           disabled={pending}
+          items={[
+            { value: "all", label: "All environments" },
+            ...ENVIRONMENTS.map((value) => ({
+              value,
+              label: ENVIRONMENT_LABELS[value],
+            })),
+          ]}
         >
           <SelectTrigger className="w-full md:w-[180px]">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All environments</SelectItem>
-            <SelectItem value="development">Development</SelectItem>
-            <SelectItem value="staging">Staging</SelectItem>
-            <SelectItem value="production">Production</SelectItem>
+            {ENVIRONMENTS.map((value) => (
+              <SelectItem key={value} value={value}>
+                {ENVIRONMENT_LABELS[value]}
+              </SelectItem>
+            ))}
           </SelectContent>
         </Select>
       </div>
@@ -109,6 +130,11 @@ function FilterFields({
             )
           }
           disabled={pending}
+          items={[
+            { value: "all", label: "All statuses" },
+            { value: "triggered", label: "Triggered" },
+            { value: "failed", label: "Failed" },
+          ]}
         >
           <SelectTrigger className="w-full md:w-[160px]">
             <SelectValue />

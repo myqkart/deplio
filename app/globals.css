@@ -65,9 +65,9 @@
   --color-done-foreground: var(--done-fg);
   --color-done-border: var(--done-border);
 
-  --color-env-dev: var(--env-dev-fg);
-  --color-env-dev-bg: var(--env-dev-bg);
-  --color-env-dev-border: var(--env-dev-border);
+  --color-env-uat: var(--env-uat-fg);
+  --color-env-uat-bg: var(--env-uat-bg);
+  --color-env-uat-border: var(--env-uat-border);
   --color-env-staging: var(--env-staging-fg);
   --color-env-staging-bg: var(--env-staging-bg);
   --color-env-staging-border: var(--env-staging-border);
@@ -143,9 +143,9 @@
   --done-border: rgba(194, 151, 255, 0.4);
   --done-bg: rgba(194, 151, 255, 0.1);
 
-  --env-dev-fg: #0550ae;
-  --env-dev-border: rgba(84, 174, 255, 0.4);
-  --env-dev-bg: rgba(84, 174, 255, 0.1);
+  --env-uat-fg: #0550ae;
+  --env-uat-border: rgba(84, 174, 255, 0.4);
+  --env-uat-bg: rgba(84, 174, 255, 0.1);
   --env-staging-fg: #9a6700;
   --env-staging-border: rgba(212, 167, 44, 0.4);
   --env-staging-bg: rgba(212, 167, 44, 0.1);
@@ -205,9 +205,9 @@
   --done-border: rgba(163, 113, 247, 0.4);
   --done-bg: rgba(163, 113, 247, 0.1);
 
-  --env-dev-fg: #39c5cf;
-  --env-dev-border: rgba(57, 197, 207, 0.4);
-  --env-dev-bg: rgba(57, 197, 207, 0.1);
+  --env-uat-fg: #39c5cf;
+  --env-uat-border: rgba(57, 197, 207, 0.4);
+  --env-uat-bg: rgba(57, 197, 207, 0.1);
   --env-staging-fg: #d29922;
   --env-staging-border: rgba(187, 128, 9, 0.4);
   --env-staging-bg: rgba(187, 128, 9, 0.15);

@@ -3,7 +3,7 @@
 
 create extension if not exists "pgcrypto";
 
-create type public.environment as enum ('development', 'staging', 'production');
+create type public.environment as enum ('staging', 'uat', 'production');
 create type public.trigger_status as enum ('triggered', 'failed');
 
 create table public.applications (
